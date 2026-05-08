@@ -6,6 +6,8 @@ Este repositorio esta pensado como una practica guiada para cursos introductorio
 
 Puedes publicarlo como template, pedir a cada estudiante que cree su copia y solicitar que active GitHub Actions. El workflow **Iniciar practica** se ejecuta con el primer `push` a `main` o manualmente desde la pestaña **Actions**, crea la primera mision y luego elimina su propio archivo para no volver a ejecutarse. Las siguientes misiones se crean conforme el estudiante cumple los criterios.
 
+El workflow de inicio tiene una guarda para no ejecutarse cuando el repositorio esta marcado como **Template repository**. Asi el repositorio base conserva el archivo y solo las copias de estudiantes lo eliminan despues de crear la primera mision.
+
 El `README.md` es la guía principal para estudiantes.
 
 ## Secuencia didactica

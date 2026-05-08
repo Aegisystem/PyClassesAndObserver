@@ -1,4 +1,4 @@
-import { createMissionIssue, findMissionIssue, getRepositoryFromEnv, getTokenFromEnv, GitHubApi, listAllIssues } from "./github-api.js";
+import { createMissionIssue, findMissionIssue, getRepositoryFromEnv, getTokenFromEnv, GitHubApi, listAllIssues, reopenIssue } from "./github-api.js";
 import { getMissionById } from "./practice-missions.js";
 
 async function main() {
@@ -24,7 +24,14 @@ async function main() {
   for (const mission of missionsToCreate) {
     const duplicate = findMissionIssue(existingIssues, mission);
     if (duplicate) {
-      console.log(`La mision ${mission.id} ya existe como issue #${duplicate.number}. No se duplica.`);
+      if (duplicate.state === "closed") {
+        const reopened = await reopenIssue(api, duplicate.number);
+        Object.assign(duplicate, reopened);
+        console.log(`La mision ${mission.id} ya existia cerrada y fue reabierta como issue #${duplicate.number}.`);
+        continue;
+      }
+
+      console.log(`La mision ${mission.id} ya existe abierta como issue #${duplicate.number}. No se duplica.`);
       continue;
     }
 
@@ -32,6 +39,19 @@ async function main() {
     existingIssues.push(issue);
     console.log(`Mision ${mission.id} creada como issue #${issue.number}: ${issue.html_url}`);
   }
+
+  const refreshedIssues = await listAllIssues(api);
+  const missingOpenMissions = missionsToCreate.filter((mission) => {
+    const issue = findMissionIssue(refreshedIssues, mission);
+    return !issue || issue.state !== "open";
+  });
+
+  if (missingOpenMissions.length > 0) {
+    const ids = missingOpenMissions.map((mission) => mission.id).join(", ");
+    throw new Error(`No se verifico un issue abierto para las misiones iniciales: ${ids}. No se debe borrar el workflow de inicio.`);
+  }
+
+  console.log("Misiones iniciales verificadas como issues abiertos.");
 }
 
 main().catch((error) => {
@@ -39,4 +59,3 @@ main().catch((error) => {
   console.error(error.message);
   process.exit(1);
 });
-

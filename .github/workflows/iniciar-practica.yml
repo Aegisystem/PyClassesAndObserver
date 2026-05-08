@@ -14,6 +14,7 @@ permissions:
 jobs:
   crear-issues-iniciales:
     name: Crear primera mision
+    if: ${{ github.event.repository.is_template != true }}
     runs-on: ubuntu-latest
 
     steps:
@@ -32,7 +33,7 @@ jobs:
 
       - name: Eliminar workflow de inicio
         id: eliminar-workflow
-        if: ${{ success() && github.ref == 'refs/heads/main' }}
+        if: ${{ success() && github.ref == 'refs/heads/main' && github.event.repository.is_template != true }}
         continue-on-error: true
         run: |
           git config user.name "github-actions[bot]"
@@ -42,7 +43,7 @@ jobs:
           git push
 
       - name: Deshabilitar workflow de inicio si no se pudo eliminar
-        if: ${{ success() && github.ref == 'refs/heads/main' && steps.eliminar-workflow.outcome == 'failure' }}
+        if: ${{ success() && github.ref == 'refs/heads/main' && github.event.repository.is_template != true && steps.eliminar-workflow.outcome == 'failure' }}
         run: |
           curl -sSL \
             -X PUT \
