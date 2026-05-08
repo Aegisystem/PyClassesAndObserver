@@ -8,6 +8,17 @@ La práctica se guía con issues progresivos en GitHub. Cuando completes una mis
 
 No cierres los issues manualmente. El cierre lo hace el workflow cuando la misión cumple los criterios.
 
+## Iniciar la práctica en GitHub
+
+Después de crear tu copia del repositorio, inicia las misiones una sola vez:
+
+1. Entra a la pestaña **Actions**.
+2. Selecciona **Iniciar práctica**.
+3. Haz clic en **Run workflow**.
+4. Revisa la pestaña **Issues**.
+
+El workflow **Iniciar práctica** también puede ejecutarse con el primer `push` a `main`. Después de crear la primera misión, el mismo workflow elimina su archivo para no volver a ejecutarse en futuros cambios.
+
 ## Crear el entorno virtual
 
 Primero clona tu copia del repositorio y entra a la carpeta del proyecto:

@@ -4,7 +4,7 @@
 
 Este repositorio esta pensado como una practica guiada para cursos introductorios o intermedios de Python.
 
-Puedes publicarlo como template, pedir a cada estudiante que cree su copia y solicitar que active GitHub Actions. El workflow **Iniciar practica** crea la primera mision. Las siguientes se crean conforme el estudiante cumple los criterios.
+Puedes publicarlo como template, pedir a cada estudiante que cree su copia y solicitar que active GitHub Actions. El workflow **Iniciar practica** se ejecuta con el primer `push` a `main` o manualmente desde la pestaña **Actions**, crea la primera mision y luego elimina su propio archivo para no volver a ejecutarse. Las siguientes misiones se crean conforme el estudiante cumple los criterios.
 
 El `README.md` es la guía principal para estudiantes.
 
