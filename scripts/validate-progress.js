@@ -304,11 +304,11 @@ async function processMission(context, issue, mission) {
     return;
   }
 
-  await closeIssue(context.api, issue.number);
   const nextIssue = await createNextMissionIfNeeded(context.api, context.issues, mission);
+  await closeIssue(context.api, issue.number);
 
   if (nextIssue) {
-    console.log(`Mision ${mission.id} cerrada. Siguiente issue: #${nextIssue.number}`);
+    console.log(`Siguiente issue preparado: #${nextIssue.number}. Mision ${mission.id} cerrada.`);
   } else {
     console.log(`Mision ${mission.id} cerrada. No quedan mas misiones.`);
   }
@@ -361,4 +361,3 @@ main().catch((error) => {
   console.error(error.message);
   process.exit(1);
 });
-
