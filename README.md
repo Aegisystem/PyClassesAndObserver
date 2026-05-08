@@ -10,32 +10,15 @@ No cierres los issues manualmente. El cierre lo hace el workflow cuando la misi�
 
 ## Crear el entorno virtual
 
-Desde la raíz del repositorio:
+Primero clona tu copia del repositorio y entra a la carpeta del proyecto:
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip
-pip install -r requirements.txt
+git clone https://github.com/TU_USUARIO/NOMBRE_DEL_REPOSITORIO.git
+cd NOMBRE_DEL_REPOSITORIO
+git status
 ```
 
-En Windows:
-
-```powershell
-python -m venv .venv
-.venv\Scripts\activate
-python -m pip install --upgrade pip
-pip install -r requirements.txt
-```
-
-Verifica que Python se esté ejecutando desde el entorno:
-
-```bash
-python --version
-python -m pip --version
-```
-
-No subas la carpeta `.venv` al repositorio. Ya está ignorada en `.gitignore`.
+Después de clonar el repositorio, completa esta sección durante la primera misión con los comandos para crear, activar y preparar el entorno virtual.
 
 ## Estructura esperada
 
@@ -169,4 +152,3 @@ Al terminar las misiones, se creará un issue final de calificación. Ejecuta ma
 ## Autores
 
 - Reemplaza esta línea con tu nombre, grupo, curso o rol.
-
